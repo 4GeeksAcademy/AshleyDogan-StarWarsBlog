@@ -1,16 +1,16 @@
 import React, { useContext } from "react";
-import { Context } from "../store/appContext";
+import { Context } from "../store/appContext.js";
 
-import PeopleCard from "../component/PeopleCard.jsx";
+import MyCard from "../component/MyCard.jsx";
 
-const StarWarsHome = () => {
+const StarWarsPeople = () => {
     const { store, actions } = useContext(Context);
     
     return (
         <>
             {store.people.map(person => {
                 return (
-                    <PeopleCard key={person.uid} name={person.name} />
+                    <MyCard key={person.uid} name={person.name} />
                 )
                 })
             }
@@ -18,4 +18,4 @@ const StarWarsHome = () => {
     );
 }
 
-export default StarWarsHome;
+export default StarWarsPeople;

@@ -1,0 +1,24 @@
+.peopleContainer, .vehiclesContainer, .planetsContainer {
+    height: flex;
+    width:auto;
+    overflow-y:hidden;
+    overflow-x:auto;
+    white-space: nowrap;
+    padding: 20px;
+}
+
+.peopleCards, .vehiclesCards, .planetsCards {
+    height:100%;
+    min-width:100px;
+    display:inline-flex;
+    vertical-align: top;
+    justify-content: center;
+}
+
+.card {
+    margin: 10px;
+}
+
+.btn-outline-warning {
+    float: right;
+}
