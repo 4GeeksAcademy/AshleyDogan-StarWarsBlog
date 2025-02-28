@@ -2,6 +2,7 @@ import React from "react";
 import StarWarsPeople from "./StarWarsPeople.jsx";
 import StarWarsVehicles from "./StarWarsVehicles.jsx";
 import StarWarsPlanets from "./StarWarsPlanets.jsx";
+import StarWarsStarships from "./StarWarsStarships.jsx";
 import "../../styles/home.css";
 
 export const Home = () => (
@@ -12,17 +13,22 @@ export const Home = () => (
 				<StarWarsPeople />
 			</div>
 		</div>
-
+		<div className="planetsContainer">
+			<h1>Planets</h1>
+			<div className="planetsCards">
+				<StarWarsPlanets />
+			</div>
+		</div>
 		<div className="vehiclesContainer">
 			<h1>Vehicles</h1>
 			<div className="vehiclesCards">
 				<StarWarsVehicles />
 			</div>
 		</div>
-		<div className="planetsContainer">
-			<h1>Planets</h1>
-			<div className="planetsCards">
-				<StarWarsPlanets />
+		<div className="starshipsContainer">
+			<h1>Starships</h1>
+			<div className="starshipsCards">
+				<StarWarsStarships />
 			</div>
 		</div>
 	</>

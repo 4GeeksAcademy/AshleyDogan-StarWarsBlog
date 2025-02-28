@@ -1,4 +1,4 @@
-.peopleContainer, .vehiclesContainer, .planetsContainer {
+.peopleContainer, .vehiclesContainer, .planetsContainer, .starshipsContainer {
     height: flex;
     width:auto;
     overflow-y:hidden;
@@ -7,7 +7,7 @@
     padding: 20px;
 }
 
-.peopleCards, .vehiclesCards, .planetsCards {
+.peopleCards, .vehiclesCards, .planetsCards, .starshipsCards {
     height:100%;
     min-width:100px;
     display:inline-flex;
@@ -22,3 +22,13 @@
 .btn-outline-warning {
     float: right;
 }
+
+.dropdown {
+    margin-right: 10px;
+}
+
+.logo {
+    height: 70px;
+    margin-left: 10px;
+}
+
