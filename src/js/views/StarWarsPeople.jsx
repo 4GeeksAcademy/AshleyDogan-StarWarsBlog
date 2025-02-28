@@ -10,7 +10,7 @@ const StarWarsPeople = () => {
         <>
             {store.people.map(person => {
                 return (
-                    <MyCard key={person.uid} name={person.name} />
+                    <MyCard key={person.uid} uid={person.uid} name={person.name} url={person.url} />
                 )
                 })
             }

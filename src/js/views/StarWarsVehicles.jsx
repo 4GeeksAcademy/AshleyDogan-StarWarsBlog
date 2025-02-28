@@ -10,7 +10,7 @@ const StarWarsVehicles = () => {
         <>
             {store.vehicles.map(vehicle => {
                 return (
-                    <MyCard key={vehicle.uid} name={vehicle.name} />
+                    <MyCard key={vehicle.uid} uid={vehicle.uid} name={vehicle.name} url={vehicle.url} />
                 )
                 })
             }

@@ -10,7 +10,7 @@ const StarWarsPlanets = () => {
         <>
             {store.planets.map(planet => {
                 return (
-                    <MyCard key={planet.uid} name={planet.name} />
+                    <MyCard key={planet.uid} uid={planet.uid} name={planet.name} url={planet.url} />
                 )
                 })
             }
