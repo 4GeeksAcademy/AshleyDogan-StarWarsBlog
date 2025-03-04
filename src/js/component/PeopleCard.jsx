@@ -1,7 +1,11 @@
-import React from "react";
-import "../../styles/home.css"
+import React, {useContext} from "react";
+import "../../styles/home.css";
+import {Link} from "react-router-dom";
+import {Context} from "../store/appContext"
 
-const MyCard = ({ name }) => {
+const PeopleCard = ({ name, uid }) => {
+
+    const {store, actions} = useContext(Context)
 
     return (
         <>
@@ -10,7 +14,9 @@ const MyCard = ({ name }) => {
                 <div className="card-body">
                     <h5 className="card-title">{name}</h5>
                     <p></p>
-                    <a href="#" className="btn btn-outline-primary">Learn more</a>
+                    <Link to={`/people/${uid}`}>
+                        <button href="#" className="btn btn-outline-primary">Learn more</button>
+                    </Link>
                     <a href="#" className="btn btn-outline-warning"><i class="fa-regular fa-heart"></i></a>
                 </div>
             </div>
@@ -18,4 +24,4 @@ const MyCard = ({ name }) => {
     );
 }
 
-export default MyCard;
+export default PeopleCard;
