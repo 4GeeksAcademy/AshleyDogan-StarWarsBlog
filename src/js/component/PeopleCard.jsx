@@ -1,19 +1,33 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../../styles/home.css";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 const PeopleCard = ({ name, uid, gender, hair_color, eye_color }) => {
   const { store, actions } = useContext(Context);
-  console.log({ name, gender, eye_color, hair_color});
+  const [characterData, setCharacterData] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
+  console.log({ name, gender, eye_color, hair_color });
+
+  // useEffect(() => {
+  //   fetch(
+  //     `https://starwars-databank-server.vercel.app/api/v1/characters/${uid}`
+  //   )
+  //     .then((response) => response.json())
+  //     .then((data) => setCharacterData(data));
+  //   setImageUrl(data.image).catch((error) =>
+  //     console.error("did not fetch characters", error)
+  //   );
+  // }, [uid]);
+
+  // if (!imageUrl) {
+  //   return <p>Loading...</p>;
+  // }
+
   return (
     <>
       <div className="card" style={{ width: "18rem" }}>
-        <img
-          src={`https://starwars-visualguide.com/assets/img/characters/${uid}.jpg`} 
-          className="card-img-top"
-          alt=""
-        />
+        {/* <img src={imageUrl} className="card-img-top" alt="" /> */}
         <div className="card-body">
           <h5 className="card-title">{name}</h5>
           <ul className="list-group list-group-flush">
@@ -31,13 +45,16 @@ const PeopleCard = ({ name, uid, gender, hair_color, eye_color }) => {
             </li>
           </ul>
           <Link to={`/people/${uid}`}>
-            <button href="#" className="btn btn-outline-primary">
-              Learn more
-            </button>
+            <button className="btn btn-outline-primary">Learn more</button>
           </Link>
-          <a href="#" className="btn btn-outline-warning">
+          <button
+            className="btn btn-outline-warning"
+            onClick={() => {
+              actions.addFavorite(name);
+            }}
+          >
             <i class="fa-regular fa-heart"></i>
-          </a>
+          </button>
         </div>
       </div>
     </>

@@ -1,23 +1,46 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import starWarsLogo from "../../img/starwars-logo.png";
+import { Context } from "../store/appContext";
 
 export const Navbar = () => {
-	return (
-		<nav className="navbar navbar-light bg-light">
-			
-			<span className="navbar-brand"><img className="logo" src={starWarsLogo} alt="starWarsLogo" /></span>
-		
-			<div className="dropdown">
-				<button className="btn btn-primary dropdown-toggle " type="button" data-bs-toggle="dropdown" aria-expanded="false">
-					Favorites
-				</button>
-					<ul className="dropdown-menu">
-						<li><a className="dropdown-item" href="#">Action</a></li>
-						<li><a className="dropdown-item" href="#">Another action</a></li>
-						<li><a className="dropdown-item" href="#">Something else here</a></li>
-					</ul>
-			</div>
-		</nav>
-	);
+  const { store, actions } = useContext(Context);
+  const handleDeleteFavorite = (deletedFavorite) => {
+    actions.removeFavorite(deletedFavorite);
+  };
+  return (
+    <nav className="navbar navbar-light bg-light">
+      <span className="navbar-brand">
+        <Link to={`/`}>
+          <img className="logo" src={starWarsLogo} alt="starWarsLogo" />
+        </Link>
+      </span>
+
+      <div className="dropdown">
+        <button
+          className="btn btn-primary dropdown-toggle "
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Favorites
+        </button>
+        <ul className="dropdown-menu dropdown-menu-end">
+          {store.favorites.map((favoriteItem, index) => (
+            <li key={index}>
+              <div className="d-flex justify-content-between">
+                <span className="dropdown-item">{favoriteItem}</span>
+                <button
+                  className="btn btn-danger btn-sm"
+                  onClick={() => handleDeleteFavorite(favoriteItem)}
+                >
+                  delete
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
+  );
 };

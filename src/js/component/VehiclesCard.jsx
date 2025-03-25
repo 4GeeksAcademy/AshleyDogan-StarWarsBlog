@@ -22,9 +22,14 @@ const VehiclesCard = ({ name, uid }) => {
               Learn more
             </button>
           </Link>
-          <a href="#" className="btn btn-outline-warning">
+          <button
+            className="btn btn-outline-warning"
+            onClick={() => {
+              actions.addFavorite(name);
+            }}
+          >
             <i class="fa-regular fa-heart"></i>
-          </a>
+          </button>
         </div>
       </div>
     </>
