@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../../styles/home.css";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-const VehiclesCard = ({ name, uid }) => {
+const VehiclesCard = ({ name, uid, climate, terrain, diameter }) => {
   const { store, actions } = useContext(Context);
 
   return (
@@ -16,7 +16,20 @@ const VehiclesCard = ({ name, uid }) => {
         />
         <div className="card-body">
           <h5 className="card-title">{name}</h5>
-          <p></p>
+          <ul className="list-group list-group-flush">
+            <li className="list-group-item">
+              <h6>Climate:</h6>
+              {climate}
+            </li>
+            <li className="list-group-item">
+              <h6>Terrain:</h6>
+              {terrain}
+            </li>
+            <li className="list-group-item">
+              <h6>Diameter:</h6>
+              {diameter}
+            </li>
+          </ul>
           <Link to={`vehicles/${uid}`}>
             <button href="#" className="btn btn-outline-primary">
               Learn more

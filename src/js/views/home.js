@@ -17,11 +17,11 @@ export const Home = () => {
               <PeopleCard
                 key={person.uid}
                 uid={person.uid}
-                name={person.name}
-                url={person.url}
-                gender={person.gender}
-                hair_color={person.hair_color}
-                eye_color={person.eye_color}
+                name={person.properties.name}
+                url={person.properties.url}
+                gender={person.properties.gender}
+                hair_color={person.properties.hair_color}
+                eye_color={person.properties.eye_color}
               />
             );
           })}
@@ -50,8 +50,11 @@ export const Home = () => {
               <VehiclesCard
                 key={vehicle.uid}
                 uid={vehicle.uid}
-                name={vehicle.name}
-                url={vehicle.url}
+                name={vehicle.properties.name}
+                url={vehicle.properties.url}
+                climate={vehicle.properties.climate}
+                terrain={vehicle.properties.terrain}
+                diameter={vehicle.properties.diameter}
               />
             );
           })}

@@ -1,3 +1,5 @@
+import { json } from "react-router";
+
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
@@ -21,12 +23,19 @@ const getState = ({ getStore, getActions, setStore }) => {
     },
     actions: {
       getPeople: async () => {
-        const response = await fetch("https://www.swapi.tech/api/people/");
-        if (!response.ok) {
-          throw new Error(response.status, response.statusText);
+        const store = getStore();
+        if (store.people <= 0) {
+          const response = await fetch("https://www.swapi.tech/api/people/");
+          const peopleArray = await response.json();
+          console.log("here is your peopleArray.results", peopleArray.results);
+          for (let details of peopleArray.results) {
+            const detailsResponse = await fetch(details.url);
+            const detailsPerson = await detailsResponse.json();
+            setStore({ people: [...store.people, detailsPerson.result] });
+            console.log("people from set store", store.people);
+          }
+          localStorage.setItem("people", JSON.stringify(store.people));
         }
-        const data = await response.json();
-        setStore({ people: data.results });
       },
 
       getPeopleDetails: async (id) => {
@@ -40,15 +49,22 @@ const getState = ({ getStore, getActions, setStore }) => {
           properties: { ...data.result.properties },
         };
         setStore({ personDetails: personalDetails });
+        return personalDetails;
       },
 
       getVehicles: async () => {
-        const response = await fetch("https://www.swapi.tech/api/vehicles/");
-        if (!response.ok) {
-          throw new Error(response.status, response.statusText);
+        const store = getStore();
+        if (store.vehicles <= 0) {
+          const response = await fetch("https://www.swapi.tech/api/vehicles/");
+          const vehiclesArray = await response.json();
+          for (let details of vehiclesArray.results) {
+            const vehiclesDetailsResponse = await fetch(details.url);
+            const detailsVehicle = await vehiclesDetailsResponse.json();
+            setStore({ vehicles: [...store.vehicles, detailsVehicle.result] });
+            console.log("vehicles from set store", store.vehicles);
+          }
+          localStorage.setItem("vehicles", JSON.stringify(store.vehicles));
         }
-        const data = await response.json();
-        setStore({ vehicles: data.results });
       },
 
       getVehicleDetails: async (id) => {
@@ -64,6 +80,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           properties: { ...data.result.properties },
         };
         setStore({ vehicleDetails: updatedVehicleDetails });
+        return updatedVehicleDetails;
       },
 
       getPlanets: async () => {
