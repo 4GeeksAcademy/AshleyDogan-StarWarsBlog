@@ -35,8 +35,11 @@ export const Home = () => {
               <PlanetsCard
                 key={planet.uid}
                 uid={planet.uid}
-                name={planet.name}
-                url={planet.url}
+                name={planet.properties.name}
+                url={planet.properties.url}
+                climate={planet.properties.climate}
+                terrain={planet.properties.terrain}
+                diameter={planet.properties.diameter}
               />
             );
           })}
@@ -52,9 +55,9 @@ export const Home = () => {
                 uid={vehicle.uid}
                 name={vehicle.properties.name}
                 url={vehicle.properties.url}
-                climate={vehicle.properties.climate}
-                terrain={vehicle.properties.terrain}
-                diameter={vehicle.properties.diameter}
+                model={vehicle.properties.model}
+                passengers={vehicle.properties.passengers}
+                crew={vehicle.properties.crew}
               />
             );
           })}

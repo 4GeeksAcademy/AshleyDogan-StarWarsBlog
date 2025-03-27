@@ -32,7 +32,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             const detailsResponse = await fetch(details.url);
             const detailsPerson = await detailsResponse.json();
             setStore({ people: [...store.people, detailsPerson.result] });
-            console.log("people from set store", store.people);
+            // console.log("people from set store", store.people);
           }
           localStorage.setItem("people", JSON.stringify(store.people));
         }
@@ -58,8 +58,8 @@ const getState = ({ getStore, getActions, setStore }) => {
           const response = await fetch("https://www.swapi.tech/api/vehicles/");
           const vehiclesArray = await response.json();
           for (let details of vehiclesArray.results) {
-            const vehiclesDetailsResponse = await fetch(details.url);
-            const detailsVehicle = await vehiclesDetailsResponse.json();
+            const detailsVehicleResponse = await fetch(details.url);
+            const detailsVehicle = await detailsVehicleResponse.json();
             setStore({ vehicles: [...store.vehicles, detailsVehicle.result] });
             console.log("vehicles from set store", store.vehicles);
           }
@@ -84,12 +84,17 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       getPlanets: async () => {
-        const response = await fetch("https://www.swapi.tech/api/planets/");
-        if (!response.ok) {
-          throw new Error(response.status, response.statusText);
+        const store = getStore();
+        if (store.planets <= 0) {
+          const response = await fetch("https://www.swapi.tech/api/planets/");
+          const planetArray = await response.json();
+          for (let details of planetArray.results) {
+            const detailsResponse = await fetch(details.url);
+            const detailsPlanet = await detailsResponse.json();
+            setStore({ planets: [...store.planets, detailsPlanet.result] });
+          }
+          localStorage.setItem("planets", JSON.stringify(store.planets));
         }
-        const data = await response.json();
-        setStore({ planets: data.results });
       },
 
       getPlanetsDetails: async (id) => {

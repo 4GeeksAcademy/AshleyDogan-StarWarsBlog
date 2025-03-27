@@ -3,7 +3,7 @@ import "../../styles/home.css";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-const VehiclesCard = ({ name, uid, climate, terrain, diameter }) => {
+const VehiclesCard = ({ name, uid, model, passengers, crew }) => {
   const { store, actions } = useContext(Context);
 
   return (
@@ -18,30 +18,30 @@ const VehiclesCard = ({ name, uid, climate, terrain, diameter }) => {
           <h5 className="card-title">{name}</h5>
           <ul className="list-group list-group-flush">
             <li className="list-group-item">
-              <h6>Climate:</h6>
-              {climate}
+              <h6>Model:</h6>
+              {model}
             </li>
             <li className="list-group-item">
-              <h6>Terrain:</h6>
-              {terrain}
+              <h6>Passengers:</h6>
+              {passengers}
             </li>
             <li className="list-group-item">
-              <h6>Diameter:</h6>
-              {diameter}
+              <h6>Crew:</h6>
+              {crew}
             </li>
           </ul>
           <Link to={`vehicles/${uid}`}>
             <button href="#" className="btn btn-outline-primary">
               Learn more
             </button>
-          </Link>
+          </Link> 
           <button
             className="btn btn-outline-warning"
             onClick={() => {
               actions.addFavorite(name);
             }}
           >
-            <i class="fa-regular fa-heart"></i>
+            <i className="fa-regular fa-heart"></i>
           </button>
         </div>
       </div>

@@ -7,18 +7,19 @@ const PeopleCard = ({ name, uid, gender, hair_color, eye_color }) => {
   const { store, actions } = useContext(Context);
   const [characterData, setCharacterData] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
-  console.log({ name, gender, eye_color, hair_color });
+  // console.log({ name, gender, eye_color, hair_color });
 
   // useEffect(() => {
   //   fetch(
-  //     `https://starwars-databank-server.vercel.app/api/v1/characters/${uid}`
+  //     `https://starwars-databank-server.vercel.app/api/v1/characters/name/Plo%20Koon`
   //   )
   //     .then((response) => response.json())
-  //     .then((data) => setCharacterData(data));
-  //   setImageUrl(data.image).catch((error) =>
-  //     console.error("did not fetch characters", error)
-  //   );
-  // }, [uid]);
+  //     .then((data) => {
+  //       setCharacterData(data);
+  //       setImageUrl(data.image);
+  //     })
+  //     .catch((error) => console.error("Did not fetch characters", error));
+  // }, []);
 
   // if (!imageUrl) {
   //   return <p>Loading...</p>;
@@ -53,7 +54,7 @@ const PeopleCard = ({ name, uid, gender, hair_color, eye_color }) => {
               actions.addFavorite(name);
             }}
           >
-            <i class="fa-regular fa-heart"></i>
+            <i className="fa-regular fa-heart"></i>
           </button>
         </div>
       </div>

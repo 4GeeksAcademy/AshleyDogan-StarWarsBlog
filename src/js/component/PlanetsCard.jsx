@@ -41,7 +41,7 @@ const PlanetsCard = ({ name, uid, diameter, terrain, climate }) => {
               actions.addFavorite(name);
             }}
           >
-            <i class="fa-regular fa-heart"></i>
+            <i className="fa-regular fa-heart"></i>
           </button>
         </div>
       </div>
