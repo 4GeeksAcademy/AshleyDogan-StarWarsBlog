@@ -7,28 +7,22 @@ const PeopleCard = ({ name, uid, gender, hair_color, eye_color }) => {
   const { store, actions } = useContext(Context);
   const [characterData, setCharacterData] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
-  // console.log({ name, gender, eye_color, hair_color });
 
-  // useEffect(() => {
-  //   fetch(
-  //     `https://starwars-databank-server.vercel.app/api/v1/characters/name/Plo%20Koon`
-  //   )
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setCharacterData(data);
-  //       setImageUrl(data.image);
-  //     })
-  //     .catch((error) => console.error("Did not fetch characters", error));
-  // }, []);
-
-  // if (!imageUrl) {
-  //   return <p>Loading...</p>;
-  // }
+  useEffect(() => {
+    fetch(`https://akabab.github.io/starwars-api/api/id/${uid}.json`)
+      .then((response) => response.json())
+      .then((data) => setImageUrl(data.image));
+  }, [uid]);
 
   return (
     <>
       <div className="card" style={{ width: "18rem" }}>
-        {/* <img src={imageUrl} className="card-img-top" alt="" /> */}
+        <img
+          src={imageUrl}
+          className="card-img-top"
+          alt=""
+          style={{ width: "auto", height: "200px", objectFit: "cover" }}
+        />
         <div className="card-body">
           <h5 className="card-title">{name}</h5>
           <ul className="list-group list-group-flush">
